@@ -4,7 +4,7 @@
   gather_facts: false
   pre_tasks:
   - name : Install Collections dependencies
-    shell: ansible-galaxy install community.hashi_vault
+    shell: ansible-galaxy install -r collections/requirements.yaml
     delegate_to: 127.0.0.1
   tasks:
     - ping:
