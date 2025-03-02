@@ -2,6 +2,6 @@
 - hosts: all
   gather_facts: false
   tasks:
-    - wait_for: port=8200 timeout=1
-      delegate_to: 127.0.0.1
-    - debug: msg=ok
+    - wait_for: 
+        port: 8200
+        timeout: 5
