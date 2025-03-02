@@ -1,0 +1,22 @@
+---
+- name: Test Vault Reachability
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Check if Vault is reachable
+      uri:
+        url: "http://10.110.117.177:8200/v1/sys/health"
+        method: GET
+        return_content: yes
+      register: vault_health_response
+      ignore_errors: yes
+
+    - name: Check the result
+      debug:
+        msg: "Vault is reachable and returned: {{ vault_health_response.content }}"
+      when: vault_health_response.status == 200
+
+    - name: Fail if Vault is not reachable
+      fail:
+        msg: "Vault is not reachable. Response: {{ vault_health_response }}"
+      when: vault_health_response.status != 200
