@@ -20,3 +20,4 @@
       fail:
         msg: "Vault is not reachable. Response: {{ vault_health_response }}"
       when: vault_health_response.status != 200
+    - debug: msg="{{ lookup('env','HTTP_PROXY') }} is an environment variable"
