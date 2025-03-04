@@ -1,7 +1,7 @@
 ---
 - name: Test Vault Reachability
   hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: Check if Vault is reachable
       uri:
