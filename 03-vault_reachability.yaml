@@ -3,8 +3,13 @@
   hosts: localhost
   gather_facts: yes
   tasks:
-    - debug: msg="{{ lookup('env','HTTP_PROXY') }} is an environment variable"
-    - debug: msg="{{ lookup('env','HTTPS_PROXY') }} is an environment variable"
+    - debug: msg="{{ lookup('env','HTTP_PROXY') }} : HTTP_PROXY is an environment variable"
+    - debug: msg="{{ lookup('env','HTTPS_PROXY') }} : HTTPS_PROXY  is an environment variable"
+    - debug: msg="{{ lookup('env','NO_PROXY') }} : NO_PROXY  is an environment variable"
+    - debug: msg="{{ lookup('env','http_proxy') }} : http_proxy  is an environment variable"
+    - debug: msg="{{ lookup('env','https_proxy') }} : https_proxy  is an environment variable"
+    - debug: msg="{{ lookup('env','no_proxy') }} : no_proxy  is an environment variable"
+
     - name: Check if Vault is reachable
       uri:
         url: "http://10.110.117.177:8200/v1/sys/health"
