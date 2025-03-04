@@ -3,6 +3,8 @@
   hosts: localhost
   gather_facts: yes
   tasks:
+    - debug: msg="{{ lookup('env','HTTP_PROXY') }} is an environment variable"
+    - debug: msg="{{ lookup('env','HTTPS_PROXY') }} is an environment variable"
     - name: Check if Vault is reachable
       uri:
         url: "http://10.110.117.177:8200/v1/sys/health"
@@ -20,4 +22,3 @@
       fail:
         msg: "Vault is not reachable. Response: {{ vault_health_response }}"
       when: vault_health_response.status != 200
-    - debug: msg="{{ lookup('env','HTTP_PROXY') }} is an environment variable"
